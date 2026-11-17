@@ -34,4 +34,6 @@ table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;p
 .route{position:relative;height:56px;border-radius:10px;background:var(--bg);border:1px solid var(--line);margin:8px 0}
 .route i{position:absolute;top:26px;left:4%;right:4%;height:4px;background:var(--line)}
 .route b{position:absolute;top:10px;font-size:24px;transform:translateX(-50%);transition:left .6s}
+dialog.auth-card{width:min(520px,calc(100% - 24px));max-width:520px;max-height:calc(100% - 24px);overflow:auto;margin:auto;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:16px}
+dialog::backdrop{background:rgba(0,0,0,.58)}
 .alert{border-left:4px solid var(--bad);padding-left:10px;margin:6px 0}

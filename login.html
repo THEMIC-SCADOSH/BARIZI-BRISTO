@@ -8,12 +8,12 @@
 <link rel="stylesheet" href="barizi.css">
 </head>
 <body>
-<header><h1>Barizi Bristo</h1><small>Resort food &amp; drinks delivery · demo system</small></header>
+<header><h1>Barizi Bristo</h1><small>Resort food &amp; drinks delivery system</small></header>
 <main id="app"></main>
 <div id="toast" aria-live="polite"></div>
 <script>
 const $=s=>document.querySelector(s);
-const SESSION="barizi-demo-session",STATE="barizi-system-state";
+const SESSION="barizi-session",STATE="barizi-system-state";
 const PAGES={customer:"customer.html",chef:"chef.html",gate:"gate.html",rider:"rider.html",accountant:"accountant.html",admin:"admin.html"};
 const NAMES={customer:"Customer",chef:"Chef / Kitchen",gate:"Gate",rider:"Rider",accountant:"Accountant",admin:"Admin"};
 const DEFAULTS=[["Chef Juma","Chef","chef","chef123"],["Mary (Accounts)","Accountant","accounts","accounts123"],["Gate Officer","Gate","gate","gate123"],["Brian Otieno","Rider","rider","rider123"],["Barizi Admin","Admin","admin","admin123"]];
@@ -41,7 +41,7 @@ function show(msg){
   const cur=current(),k=cur&&PAGES[cur.role]?cur.role:"";
   $("#app").innerHTML=`<div class="card auth-card">
   <h2>Sign in</h2>
-  <p class="mut">One sign-in for every Barizi Bristo page. You'll be taken to the page that matches your account. Demo accounts and data are stored in this browser and are not secure for real customer or payment information.</p>
+  <p class="mut">One sign-in for every Barizi Bristo page. You'll be taken to the page that matches your account. Accounts and data are stored in this browser and are not secure for real customer or payment information.</p>
   ${k?`<div class="card" style="margin-bottom:10px"><div>Already signed in as <b>${esc(cur.name)}</b> (${NAMES[k]}).</div><div class="row" style="margin-top:6px"><a href="${PAGES[k]}"><button class="p" type="button">Continue to ${NAMES[k]} page</button></a><button type="button" id="out">Sign out</button></div></div>`:""}
   ${msg?`<p class="alert" role="alert">${esc(msg)}</p>`:""}
   <form id="f"><label>Username<br><input name="username" autocomplete="username" required autofocus></label>
