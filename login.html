@@ -47,14 +47,16 @@ function show(msg){
   <form id="f"><label>Username<br><input name="username" autocomplete="username" required autofocus></label>
   <p><label>Password<br><input name="password" type="password" autocomplete="current-password" required></label></p>
   <button class="p" type="submit">Sign in</button></form>
-  <hr><h3>New customer?</h3>
+  <div class="row" style="margin-top:10px"><button type="button" id="newCustomer" aria-haspopup="dialog">New</button><span class="mut">Staff accounts are created by the admin. Ask the admin for your sign-in details.</span></div>
+  <dialog id="newCustomerDialog" class="auth-card" aria-labelledby="newCustomerTitle">
+  <div class="row sp"><h2 id="newCustomerTitle">Create a customer account</h2><button type="button" id="closeNewCustomer">Close</button></div>
+  <p class="mut">This form creates customer accounts only. For staff access, ask the admin to create your account.</p>
+  <p id="signupError" class="alert" role="alert" hidden></p>
   <form id="r"><label>Your name<br><input name="name" autocomplete="name" required></label>
   <p><label>Choose a username<br><input name="username" autocomplete="username" required></label></p>
   <p><label>Create a password (6+ characters)<br><input name="password" type="password" autocomplete="new-password" minlength="6" required></label></p>
-  <button type="submit">Create customer account</button></form>
-  <hr><p class="mut"><b>Demo logins</b> (do not reuse real passwords):<br>
-  Chef: chef / chef123 · Gate: gate / gate123 · Rider: rider / rider123<br>
-  Accountant: accounts / accounts123 · Admin: admin / admin123</p></div>`;
+  <button class="p" type="submit">Create customer account</button></form>
+  </dialog></div>`;
   $("#f").onsubmit=e=>{
     e.preventDefault();
     const f=e.currentTarget,un=f.elements.username.value.trim().toLowerCase(),pw=f.elements.password.value;
@@ -65,16 +67,19 @@ function show(msg){
   $("#r").onsubmit=e=>{
     e.preventDefault();
     const f=e.currentTarget,name=f.elements.name.value.trim(),un=f.elements.username.value.trim().toLowerCase(),pw=f.elements.password.value;
-    if(!name||!un||pw.length<6){show("Enter your name, username, and a password of at least 6 characters.");return}
-    if(allUsers().some(x=>String(x.username||"").toLowerCase()==un)){show("That username is already in use.");return}
+    if(!name||!un||pw.length<6){$("#signupError").textContent="Enter your name, username, and a password of at least 6 characters.";$("#signupError").hidden=false;return}
+    if(allUsers().some(x=>String(x.username||"").toLowerCase()==un)){$("#signupError").textContent="That username is already in use.";$("#signupError").hidden=false;return}
     const st=readState();
     st.users=st.users||allUsers();
     const u={n:name,role:"Customer",username:un,password:pw,perm:{menu:0,orders:0,cancel:0,ledger:0,users:0}};
     st.users.push(u);
     try{localStorage.setItem(STATE,JSON.stringify(st))}
-    catch(err){console.error(err);show("Could not save your account; enable browser storage.");return}
+    catch(err){console.error(err);$("#signupError").textContent="Could not save your account; enable browser storage.";$("#signupError").hidden=false;return}
     go(u);
   };
+  const dialog=$("#newCustomerDialog");
+  $("#newCustomer").onclick=()=>{dialog.showModal();dialog.querySelector('[name="name"]').focus()};
+  $("#closeNewCustomer").onclick=()=>dialog.close();
   const out=$("#out");
   if(out)out.onclick=()=>{try{sessionStorage.removeItem(SESSION)}catch(e){}show()};
 }
