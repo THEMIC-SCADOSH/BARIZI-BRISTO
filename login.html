@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="barizi.css">
 </head>
 <body>
-<header><h1>Barizi Bristo</h1><small>Resort food &amp; drinks delivery system</small></header>
+<header><h1>Barizi Bristo</h1><small>Resort food &amp; drinks delivery system🚗</small></header>
 <main id="app"></main>
 <div id="toast" aria-live="polite"></div>
 <script>
@@ -41,13 +41,13 @@ function show(msg){
   const cur=current(),k=cur&&PAGES[cur.role]?cur.role:"";
   $("#app").innerHTML=`<div class="card auth-card">
   <h2>Sign in</h2>
-  <p class="mut">One sign-in for every Barizi Bristo page. You'll be taken to the page that matches your account. Accounts and data are stored in this browser and are not secure for real customer or payment information.</p>
+  <p class="mut">One sign-in for every customer.<br>WELCOME OUR ESTEEMED CUSTOMER😘</br></p>
   ${k?`<div class="card" style="margin-bottom:10px"><div>Already signed in as <b>${esc(cur.name)}</b> (${NAMES[k]}).</div><div class="row" style="margin-top:6px"><a href="${PAGES[k]}"><button class="p" type="button">Continue to ${NAMES[k]} page</button></a><button type="button" id="out">Sign out</button></div></div>`:""}
   ${msg?`<p class="alert" role="alert">${esc(msg)}</p>`:""}
   <form id="f"><label>Username<br><input name="username" autocomplete="username" required autofocus></label>
   <p><label>Password<br><input name="password" type="password" autocomplete="current-password" required></label></p>
   <button class="p" type="submit">Sign in</button></form>
-  <div class="row" style="margin-top:10px"><button type="button" id="newCustomer" aria-haspopup="dialog">New</button><span class="mut">Staff accounts are created by the admin. Ask the admin for your sign-in details.</span></div>
+  <div class="row" style="margin-top:10px"><button type="button" id="newCustomer" aria-haspopup="dialog">New</button><span class="mut">SERVING MEALS AT YOUR OWN TASTE AND PREFERENCE. ORDER AND ENJOY BEAUTIFUL😍🍛🍛🍲 MEALS </span></div>
   <dialog id="newCustomerDialog" class="auth-card" aria-labelledby="newCustomerTitle">
   <div class="row sp"><h2 id="newCustomerTitle">Create a customer account</h2><button type="button" id="closeNewCustomer">Close</button></div>
   <p class="mut">This form creates customer accounts only. For staff access, ask the admin to create your account.</p>
